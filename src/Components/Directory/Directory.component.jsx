@@ -45,7 +45,6 @@ class Directory extends Component {
                 }
             ]
         }
-
     }
 
     render() {
