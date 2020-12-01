@@ -3,6 +3,10 @@ import React, { Component } from "react";
 import "./SignIn.styles.scss";
 
 // components used
+import FormInput from "../FormInput/FormInput.component";
+import CustomButton from "../CustomButton/CustomButton.component";
+import SignInWithGoogle, { signInWithGoogle } from "../../Firebase/Firebase.utils";
+
 class SignIn extends Component {
     constructor() {
         super()
@@ -30,20 +34,25 @@ class SignIn extends Component {
                 <span>Sign in with your email and password</span>
 
                 <form onSubmit={this.handleSubmit}>
-                    <input
+                    <FormInput
                         name="email"
+                        type="email"
                         value={this.state.email}
-                        onChange={this.handleChange}
-                        required />
-                    <label>Email</label>
-                    <input
+                        handleChange={this.handleChange}
+                        required
+                        label="email" />
+                    <FormInput
                         name="password"
+                        type="password"
                         value={this.state.password}
-                        onChange={this.handleChange}
+                        handleChange={this.handleChange}
+                        label="password"
                         required />
-                    <label>Password</label>
+                    <div className="buttons">
+                        <CustomButton>SIGN IN</CustomButton>
+                        <CustomButton onClick={signInWithGoogle} isGoogleSignIn={true}>SIGN IN WITH GOOGLE</CustomButton>
+                    </div>
 
-                    <input type="submit" value="Submit" />
                 </form>
             </div>
         )
