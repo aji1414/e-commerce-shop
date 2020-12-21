@@ -5,6 +5,7 @@ import './Checkout.styles.scss';
 
 // components
 import CheckoutItem from "../../Components/CheckoutItem/CheckoutItem.component";
+import StripeCheckoutButton from "../../Components/StripeButton/StripeButton.component";
 
 // redux actions
 import {connect} from "react-redux";
@@ -38,6 +39,13 @@ const CheckoutPage = ({cartItems, total}) => (
         <div className="total">
             <span>TOTAL: ${total}</span>
         </div>
+        <div className="test-warning">
+            *Please use the following test credit card for paytments*
+            <br />
+            cardNo:4242 4242 4242 4242 Exp:01/22 CVV:123
+        </div>
+
+        <StripeCheckoutButton price={total} />
     </div>
 )
 
