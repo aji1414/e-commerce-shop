@@ -17,6 +17,9 @@ import {updateCollections} from "../../Redux/Shop/Shop.actions"
 const CollectionsOverviewWithSpinner = WithSpinner(CollectionsOverview);
 const CollectionPageWithSpinner = WithSpinner(CollectionPage);
 
+
+
+
 class ShopPage extends Component {
 
     state = {
@@ -27,10 +30,9 @@ class ShopPage extends Component {
 
     componentDidMount(){
         const collectionRef = firestore.collection("collections");
-
         const {updateCollections} = this.props;
 
-        collectionRef.onSnapshot(async snapshot => {
+        collectionRef.get().then(snapshot => {
             const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
             updateCollections(collectionsMap);
             this.setState({loading:false});
