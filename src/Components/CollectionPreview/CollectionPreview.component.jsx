@@ -1,6 +1,7 @@
 // external libraries and stylesheet
 import React from "react";
 import "./CollectionPreview.styles.scss";
+import { Link } from "react-router-dom";
 
 // components used
 import CollectionItem from "../CollectionItem/CollectionItem.component";
@@ -8,7 +9,7 @@ import CollectionItem from "../CollectionItem/CollectionItem.component";
 
 const CollectionPreview = ({ title, items }) => (
     <div className="collection-preview">
-        <h1 className="title">{title.toUpperCase()}</h1>
+        <Link to={`/shop/${title.toLowerCase()}`}><h1 className="title">{title.toUpperCase()}</h1></Link>
         <div className="preview">
             {
                 items

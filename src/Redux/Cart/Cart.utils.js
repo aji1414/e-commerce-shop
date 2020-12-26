@@ -25,3 +25,10 @@ export const removeItemFromCart = (cartItems, cartItemToRemove) => {
     })
     return newCart;
 };
+
+// export const clearCart = (cartItems) => {
+//     while(cartItems.length){
+//         cartItems.pop();
+//     };
+//     return cartItems;
+// };

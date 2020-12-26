@@ -1,4 +1,4 @@
-import {addItemToCart, removeItemFromCart, clearCart} from "./Cart.utils";
+import {addItemToCart, removeItemFromCart} from "./Cart.utils";
 
 const INITIAL_STATE = {
     hidden: true,
