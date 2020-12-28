@@ -9,14 +9,14 @@ import CollectionsOverviewContainer from "../../Components/CollectionsOverview/C
 
 // redux
 import {connect} from "react-redux";
-import {fetchCollectionsStartAsync} from "../../Redux/Shop/Shop.actions"
+import {fetchCollectionsStart} from "../../Redux/Shop/Shop.actions"
 
 
 
 class ShopPage extends Component {
     componentDidMount(){
-        const {fetchCollectionsStartAsync} = this.props;
-        fetchCollectionsStartAsync();
+        const {fetchCollectionsStart} = this.props;
+        fetchCollectionsStart();
     }
 
     render(){
@@ -40,7 +40,7 @@ class ShopPage extends Component {
 
 
 const mapDispatchToProps = dispatch => ({
-    fetchCollectionsStartAsync: () => dispatch(fetchCollectionsStartAsync())
+    fetchCollectionsStart: () => dispatch(fetchCollectionsStart())
 })
 
 export default connect(null,mapDispatchToProps)(ShopPage);

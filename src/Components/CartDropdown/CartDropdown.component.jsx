@@ -32,7 +32,7 @@ const CartDropdown = ({cartItems, history, dispatch}) => (
             GO TO CHECKOUT
         </CustomButton>
         <ClearButtonContainer onClick={() =>{
-            dispatch(clearCart())
+            dispatch(clearCart());
             dispatch(toggleCartHidden());
         }}>
             Empty Cart

@@ -1,6 +1,5 @@
 // external libraries and stylesheet
-import React, { Component } from "react";
-import {compose} from "redux";
+
 // import './App.styles.scss';
 
 // components
@@ -11,7 +10,7 @@ import CollectionsOverview from "./CollectionsOverview.component";
 import {connect} from "react-redux";
 import {createStructuredSelector} from "reselect";
 import {selectIsCollectionFetching} from "../../Redux/Shop/Shop.selectors";
-import { createUserProfileDocument } from "../../Firebase/Firebase.utils";
+import {compose} from "redux";
 
 const mapStateToProps = createStructuredSelector({
     isLoading: selectIsCollectionFetching

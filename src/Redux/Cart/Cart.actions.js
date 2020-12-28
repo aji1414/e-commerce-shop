@@ -1,22 +1,24 @@
+import UserActionTypes from "./Cart.types";
+
 export const toggleCartHidden = () => ({
-    type:"TOGGLE_CART_HIDDEN"
+    type:UserActionTypes.TOGGLE_CART_HIDDEN
 });
 
 export const addItem = item =>({
-    type:"ADD_ITEM",
+    type:UserActionTypes.ADD_ITEM,
     payload: item
-})
+});
 
 export const clearItemFromCart = item => ({
-    type:"CLEAR_ITEM_FROM_CART",
+    type:UserActionTypes.CLEAR_ITEM_FROM_CART,
     payload: item
 });
 
 export const removeItem = item => ({
-    type:"REMOVE_ITEM",
+    type:UserActionTypes.REMOVE_ITEM,
     payload: item
-})
+});
 
 export const clearCart = () => ({
-    type:"CLEAR_CART"
-})
+    type:UserActionTypes.CLEAR_CART
+});
