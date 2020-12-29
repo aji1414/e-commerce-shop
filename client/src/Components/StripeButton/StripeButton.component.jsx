@@ -1,5 +1,6 @@
 // external libraries and stylesheet
 import React from "react";
+import axios from "axios";
 // import './App.styles.scss';
 
 // components
@@ -13,8 +14,21 @@ const StripeCheckoutButton = ({price}) => {
     const publishableKey = "pk_test_51HRCiUGSLiXBk61g60DGnKse4UvJjERVZHAYym51W7s4zzAsb3644aeCbz88VnsxG0fl2MiVLqCUhMMOcCQHP4rj00NyXlAnEa"
 
     const onToken = token => {
-        console.log(token);
-        alert("Payment Successfull")
+        axios({
+            url: "payment",
+            method: "post",
+            data:{
+                amount: priceForStripe,
+                token: token
+            }
+        }).then(response => {
+            alert("Payment successful")
+        }).catch(error =>{
+            console.log("Payment error: " + JSON.parse(error));
+            alert(
+                "There was an issue with your payment. Please make sure you use the provided credit card"
+            )
+        })
     }
 
     return(
