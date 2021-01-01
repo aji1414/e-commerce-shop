@@ -22,9 +22,15 @@ class CartIcon extends Component {
     }
 
     handleClickOutside = (e) =>{
+        const arrayExemptLocations = ["GO TO CHECKOUT", "EMPTY CART"];
+
         if(this.node.contains(e.target)){
             return;
         }
+        else if(arrayExemptLocations.includes(e.path[0].innerHTML.toUpperCase()) === true){
+            return;
+        } 
+
         const {hideCart, cartHidden} = this.props;
         if(cartHidden === false){hideCart()};
     }
