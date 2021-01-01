@@ -6,7 +6,7 @@ import "./CartIcon.styles.scss";
 import { createStructuredSelector } from "reselect";
 import {connect} from "react-redux";
 import {toggleCartHidden, hideCart} from "../../Redux/Cart/Cart.actions";
-import {selectCartItemsCount} from "../../Redux/Cart/Cart.selectors";
+import {selectCartItemsCount, selectCartHidden} from "../../Redux/Cart/Cart.selectors";
 
 // components used
 import {ReactComponent as ShoppingIcon} from "../../Assets/shopping-bag.svg"
@@ -25,8 +25,8 @@ class CartIcon extends Component {
         if(this.node.contains(e.target)){
             return;
         }
-        const {hideCart} = this.props;
-        hideCart();
+        const {hideCart, cartHidden} = this.props;
+        if(cartHidden === false){hideCart()};
     }
 
     render(){
@@ -44,7 +44,8 @@ const mapDispatchToProps = dispatch => ({
 })
 
 const mapStateToProps = createStructuredSelector({
-    itemCount: selectCartItemsCount
+    itemCount: selectCartItemsCount,
+    cartHidden: selectCartHidden
 })
 
 export default connect(mapStateToProps, mapDispatchToProps) (CartIcon);
