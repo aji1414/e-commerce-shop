@@ -1,25 +1,46 @@
 // external libraries and stylesheet
-import React from "react";
+import React, {Component} from "react";
 import "./CartIcon.styles.scss";
 
 // redux
 import { createStructuredSelector } from "reselect";
 import {connect} from "react-redux";
-import {toggleCartHidden} from "../../Redux/Cart/Cart.actions";
+import {toggleCartHidden, hideCart} from "../../Redux/Cart/Cart.actions";
 import {selectCartItemsCount} from "../../Redux/Cart/Cart.selectors";
 
 // components used
 import {ReactComponent as ShoppingIcon} from "../../Assets/shopping-bag.svg"
 
-const CartIcon = ({toggleCartHidden, itemCount}) => (
-    <div className="cart-icon" onClick={toggleCartHidden}>
-        <ShoppingIcon className="shopping-icon"/>
-        <span className="item-count">{itemCount}</span>
-    </div>
-)
+class CartIcon extends Component {
+
+    componentDidMount(){
+        document.addEventListener("mousedown", this.handleClickOutside, false);
+    }
+
+    componentWillUnmount(){
+        document.removeEventListener("mousedown", this.handleClickOutside, false);
+    }
+
+    handleClickOutside = (e) =>{
+        if(this.node.contains(e.target)){
+            return;
+        }
+        const {hideCart} = this.props;
+        hideCart();
+    }
+
+    render(){
+        const {toggleCartHidden, itemCount} = this.props;
+        return(
+        <div ref={node => this.node = node} className="cart-icon" onClick={toggleCartHidden}>
+            <ShoppingIcon className="shopping-icon"/>
+            <span className="item-count">{itemCount}</span>
+        </div>)}
+}
 
 const mapDispatchToProps = dispatch => ({
-    toggleCartHidden:() => dispatch(toggleCartHidden())
+    toggleCartHidden:() => dispatch(toggleCartHidden()),
+    hideCart: () => dispatch(hideCart())
 })
 
 const mapStateToProps = createStructuredSelector({

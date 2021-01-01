@@ -1,20 +1,20 @@
 // external libraries and stylesheet
 import React from "react";
-import {CartDropdownContainer, CartItemsContainer, EmptyMessageContainer, ClearButtonContainer} from "./CartDropdown.styles";
+import {CartTotal, CartDropdownContainer, CartItemsContainer, EmptyMessageContainer, ClearButtonContainer} from "./CartDropdown.styles";
 // import "./CartDropdown.styles.scss";
 import {withRouter} from "react-router-dom";
 
 // redux
 import {connect} from "react-redux";
 import {createStructuredSelector} from "reselect";
-import {selectCartItems} from "../../Redux/Cart/Cart.selectors";
+import {selectCartItems, selectCartTotal} from "../../Redux/Cart/Cart.selectors";
 import {toggleCartHidden, clearCart} from "../../Redux/Cart/Cart.actions";
 
 // components used
 import CustomButton from "../CustomButton/CustomButton.component";
 import CartItem from "../CartItem/CartItem.component";
 
-const CartDropdown = ({cartItems, history, dispatch}) => (
+const CartDropdown = ({cartTotal,cartItems, history, dispatch}) => (
     <CartDropdownContainer>
         <CartItemsContainer>
             {
@@ -26,6 +26,12 @@ const CartDropdown = ({cartItems, history, dispatch}) => (
             <EmptyMessageContainer>Your cart is empty</EmptyMessageContainer>
             }
         </CartItemsContainer>
+        {
+            cartItems.length &&
+            <CartTotal>
+                Current Total: ${cartTotal}
+            </CartTotal>
+        }
         <CustomButton onClick={() => {
             history.push("/checkout");
             dispatch(toggleCartHidden())}}>
@@ -42,7 +48,8 @@ const CartDropdown = ({cartItems, history, dispatch}) => (
 
 
 const mapStateToProps = createStructuredSelector({
-    cartItems: selectCartItems
+    cartItems: selectCartItems,
+    cartTotal: selectCartTotal
 })
 
 export default withRouter(connect(mapStateToProps)(CartDropdown));

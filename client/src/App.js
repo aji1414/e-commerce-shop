@@ -2,9 +2,10 @@
 import { Switch, Route, Redirect } from "react-router-dom";
 import React, { Component } from "react";
 import {connect} from "react-redux";
-import './App.css';
+
 
 // components
+import {GlobalStyle} from "./global.styles";
 import Header from "./Components/Header/Header.component";
 import HomePage from "./Pages/HomePage/HomePage.component";
 import ShopPage from "./Pages/ShopPage/Shop.component";
@@ -31,7 +32,8 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div>
+        <GlobalStyle />
         <Header />
         <Switch >
           <Route exact path="/" component={HomePage} />
