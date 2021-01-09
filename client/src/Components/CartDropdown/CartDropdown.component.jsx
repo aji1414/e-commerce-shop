@@ -63,11 +63,15 @@ class CartDropdown extends Component {
                     dispatch(toggleCartHidden())}}>
                     GO TO CHECKOUT
                 </CustomButton>
-                <ClearButtonContainer onClick={async () =>{
-                    this.emptyCartSubmit();
-                }}>
-                    Empty Cart
-                </ClearButtonContainer>
+                {
+                    cartItems.length > 0 &&
+                    <ClearButtonContainer onClick={async () =>{
+                        this.emptyCartSubmit();
+                    }}>
+                        Empty Cart
+                    </ClearButtonContainer>
+                }
+                
             </CartDropdownContainer>
         )
     }
